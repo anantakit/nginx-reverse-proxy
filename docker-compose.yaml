@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  nginx:
+    image: nginx:latest
+    restart: unless-stopped
+    depends_on:
+      - "web-1"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    ports:
+      - "80:80"
+  website-1:
+    image: nginx:latest
+    volumes: 
+      - ./website-1/index.html:/usr/share/nginx/html/index.html
+    expose: 
+      - "80"
